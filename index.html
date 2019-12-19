@@ -142,102 +142,101 @@
         }
     </script>
     <style>
-        body {
-            font-family: "Courier New", Courier, monospace;
-        }
-        h1 {
-            text-align: center;
-            font-size: 6vw;
-        }
-        #quote {
-            text-align: center;
-            padding-top: 5%;
-            padding-bottom: 5%;
-            height: 33vw;
-            font-size: 6vw;
-        }
-        p {
-            text-align: justify;
-        }
+                body {
+                    font-family: "Courier New", Courier, monospace;
+                }
+                h1 {
+                    text-align: center;
+                    font-size: 6vw;
+                }
+                #quote {
+                    text-align: center;
+                    padding-top: 5%;
+                    padding-bottom: 5%;
+                    height: 40vw;
+                    font-size: 6vw;
+                }
+                p {
+                    text-align: justify;
+                }
 
-        #game-container {
-            display: none;
-            top: 20%;
-        }
+                #game-container {
+                    display: none;
+                    top: 20%;
+                }
 
-        #button-container {
-            display: flex;
-            height: 100px;
-        }
+                #button-container {
+                    display: flex;
+                    height: 100px;
+                }
 
-        #start-container {
-            text-align: center;
-            font-size: 4.5vw;
-            margin: 10px;
-        }
+                #start-container {
+                    text-align: center;
+                    font-size: 4.5vw;
+                    margin: 10px;
+                }
 
-        #startButton {
-            text-align: center;
-            vertical-align: 50%;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 6vw;
-            border: 0px;
-            font-weight: bolder;
-            background-color: rgb(118, 214, 182);
-            border-radius: 20px;
-            padding: 10px;
-            width: 250px;
-        }
+                #startButton {
+                    text-align: center;
+                    vertical-align: 50%;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 6vw;
+                    border: 0px;
+                    font-weight: bolder;
+                    background-color: rgb(118, 214, 182);
+                    border-radius: 20px;
+                    padding: 10px;
+        =        }
 
-        #startButton:active {
-            background-color: rgb(96, 158, 137);
-        }
+                #startButton:active {
+                    background-color: rgb(96, 158, 137);
+                }
 
-        .guessButton {
-            text-align: center;
-            vertical-align: 50%;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 6vw;
-            border: 0px;
-            font-weight: bolder;
-        }
-        .guessButton#guessTrump {
-            background-color: rgb(235, 88, 112);
-            width: 50%;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-        }
-        .guessButton#guessPrequel {
-            background-color: rgb(75, 160, 209);
-            flex-grow: 1;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
+                .guessButton {
+                    text-align: center;
+                    vertical-align: 50%;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 6vw;
+                    border: 0px;
+                    font-weight: bolder;
+                }
+                .guessButton#guessTrump {
+                    background-color: rgb(235, 88, 112);
+                    width: 50%;
+                    border-top-left-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                }
+                .guessButton#guessPrequel {
+                    background-color: rgb(75, 160, 209);
+                    flex-grow: 1;
+                    border-top-right-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                }
 
-        #result {
-            display: flex;
-            border-radius: 5px;
-            height: 30px;
-            line-height: 30px;
-            padding: 5px;
-            font-size: 4vw;
-        }
+                #result {
+                    display: flex;
+                    border-radius: 5px;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 5px;
+                    font-size: 4vw;
+                }
 
-        #quoteNumber {
-            width: 50%;
-            text-align: left;
-        }
-        #score {
-            flex-grow: 1;
-            text-align: right;
-        }
+                #quoteNumber {
+                    width: 50%;
+                    text-align: left;
+                }
+                #score {
+                    flex-grow: 1;
+                    text-align: right;
+                }
 
-        .guessButton#guessTrump:active {
-            background-color: rgb(197, 99, 115);
-        }
-        .guessButton#guessPrequel:active {
-            background-color: rgb(90, 141, 170);
-        }
+                .guessButton#guessTrump:active {
+                    background-color: rgb(197, 99, 115);
+                }
+                .guessButton#guessPrequel:active {
+                    background-color: rgb(90, 141, 170);
+                }
     </style>
 </head>
 <body>
