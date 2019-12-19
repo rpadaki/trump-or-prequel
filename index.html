@@ -127,7 +127,7 @@
             getNext = api.getNext;
             checkAnswer = api.checkAnswer;
             document.getElementById("start-container").style.display = "none";
-            document.getElementById("game-container").style.display = "block";
+            document.getElementById("game-container").style.display = "flex";
             setupNext();
         }
     </script>
@@ -141,11 +141,11 @@
         }
         #quote {
             text-align: center;
-            padding-top: 5%;
-            padding-bottom: 5%;
-            height: 40%;
             font-size: 6vmin;
+            flex-grow: 1;
+            padding-top: 5vh;
         }
+
         p {
             text-align: justify;
         }
@@ -153,11 +153,13 @@
         #game-container {
             display: none;
             top: 20%;
+            flex-direction: column;
+            height: 80vh;
         }
 
         #button-container {
             display: flex;
-            height: 100px;
+            height: 15vmin;
         }
 
         #start-container {
@@ -168,7 +170,6 @@
 
         #startButton {
             text-align: center;
-            vertical-align: 50%;
             font-family: "Courier New", Courier, monospace;
             font-size: 6vmin;
             border: 0px;
@@ -184,7 +185,6 @@
 
         .guessButton {
             text-align: center;
-            vertical-align: 50%;
             font-family: "Courier New", Courier, monospace;
             font-size: 6vmin;
             border: 0px;
@@ -209,7 +209,7 @@
             height: 30px;
             line-height: 30px;
             padding: 5px;
-            font-size: 4vmin;
+            font-size: 4vh;
         }
 
         #quoteNumber {
