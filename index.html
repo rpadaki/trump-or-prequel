@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Trump or Prequel?</title>
+    <meta charset="utf-8" />
+    <script>
+        function shuffle(a) {
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+        function makeAPI() {
+            var t = [
+                "It is a terrible thing you are doing, but you will have to live with it, not I!",
+                "You do know know, nor do you care, the great damage and hurt you have inflicted upon wonderful and loving members of my family.",
+                "You are the ones bringing pain and suffering to our Republic for your own selfish personal, political, and partisan gain.",
+                "You showed no remorse, no capacity for self-reflection.",
+                "You view democracy as your enemy!",
+                "You said it was very divisive — it certainly is, even far more than you ever thought possible — and it will only get worse!",
+                "This is nothing more than an illegal, partisan attempted coup.",
+                "No intelligent person believes what you are saying."
+            ];
+            var p = [
+                "We live in a real world, come back to it.",
+                "What if the democracy we thought we were serving no longer exists?",
+                "So this is how liberty dies...",
+                "This party's over.",
+                "If you're not with me, then you're my enemy.",
+                "You must realize, you are doomed!",
+                "So, this is how liberty dies.",
+                "Have you no sense at all?",
+                "I will sign no treaty, senator.",
+                "I was not elected to watch my people suffer and die!"
+            ];
+            shuffle(p);
+            shuffle(t);
+            var lists = [t, p];
+            var order = [];
+            for (var i = 0; i < t.length; ++i) {
+                order.push(0);
+            }
+            for (var j = 0; j < p.length; ++j) {
+                order.push(1);
+            }
+            shuffle(order);
+            var counters = [-1, -1];
+            var o_counter = -1;
+
+            function getPosition() {
+                return [o_counter + 1, order.length];
+            }
+
+            function getNext() {
+                if (o_counter >= order.length - 1) {
+                    return 0;
+                }
+                ++o_counter;
+                var list = order[o_counter];
+                if (counters[list] >= lists[list].length - 1) {
+                    return -1;
+                }
+                ++counters[list];
+                return lists[list][counters[list]];
+            }
+            var correct = 0;
+
+            function checkAnswer(i) {
+                if (i == order[o_counter] && o_counter < order.length - 1) {
+                    ++correct;
+                }
+                return [i == order[o_counter], correct, o_counter + 1];
+            }
+            return {
+                getPosition: getPosition,
+                getNext: getNext,
+                checkAnswer: checkAnswer
+            };
+        }
+        var { getPosition, getNext, checkAnswer } = makeAPI();
+
+        function setQuoteNumber(a, b) {
+            document.getElementById("quoteNumber").innerText =
+                "Quote " + a + " of " + b;
+        }
+
+        function setScore(a, b) {
+            document.getElementById("score").innerText =
+                a + "/" + b + " correct";
+        }
+
+        function setupNext() {
+            var quote = getNext();
+            var position = getPosition();
+
+            if (quote == 0) {
+                // done
+                document.getElementById("button-container").style.display =
+                    "none";
+                document.getElementById("result").style.display = "none";
+                var score = document.getElementById("score").innerText;
+                document.getElementById("quote").innerText =
+                    score + "\n\nvery special!";
+            } else if (quote == -1) {
+                // error
+            } else {
+                document.getElementById("quote").innerText = "“" + quote + "”";
+                setQuoteNumber(position[0], position[1]);
+            }
+        }
+
+        function updateResult(result) {
+            setScore(result[1], result[2]);
+            if (result[0]) {
+                document.getElementById("result").style.backgroundColor =
+                    "rgb(142, 236, 147)";
+            } else {
+                document.getElementById("result").style.backgroundColor =
+                    "rgb(245, 142, 138)";
+            }
+        }
+
+        function guessTrump() {
+            var result = checkAnswer(0);
+            updateResult(result);
+
+            setupNext();
+        }
+
+        function guessPrequel() {
+            var result = checkAnswer(1);
+            updateResult(result);
+
+            setupNext();
+        }
+
+        function startGame() {
+            document.getElementById("start-container").style.display = "none";
+            document.getElementById("game-container").style.display = "block";
+            setupNext();
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+        }
+        h1 {
+            text-align: center;
+        }
+        #quote {
+            text-align: center;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            height: 100px;
+        }
+        p {
+            text-align: justify;
+        }
+
+        #game-container {
+            display: none;
+            top: 20%;
+        }
+
+        #button-container {
+            display: flex;
+            height: 100px;
+        }
+
+        #start-container {
+            text-align: center;
+            font-size: large;
+            margin: 10px;
+        }
+
+        #startButton {
+            text-align: center;
+            vertical-align: 50%;
+            font-family: "Courier New", Courier, monospace;
+            font-size: xx-large;
+            border: 0px;
+            font-weight: bolder;
+            background-color: rgb(118, 214, 182);
+            border-radius: 20px;
+            height: 60px;
+            width: 250px;
+        }
+
+        #startButton:active {
+            background-color: rgb(96, 158, 137);
+        }
+
+        .guessButton {
+            text-align: center;
+            vertical-align: 50%;
+            font-family: "Courier New", Courier, monospace;
+            font-size: xx-large;
+            border: 0px;
+            font-weight: bolder;
+        }
+        .guessButton#guessTrump {
+            background-color: rgb(235, 88, 112);
+            width: 50%;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        .guessButton#guessPrequel {
+            background-color: rgb(75, 160, 209);
+            flex-grow: 1;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        #result {
+            display: flex;
+            border-radius: 5px;
+            height: 30px;
+            line-height: 30px;
+            padding: 5px;
+        }
+
+        #quoteNumber {
+            width: 50%;
+            text-align: left;
+        }
+        #score {
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        .guessButton#guessTrump:active {
+            background-color: rgb(197, 99, 115);
+        }
+        .guessButton#guessPrequel:active {
+            background-color: rgb(90, 141, 170);
+        }
+    </style>
+</head>
+<body>
+    <h1>Trump or Prequel?</h1>
+    <div id="start-container">
+        <p>
+            On December 17, 2019, United States President Donald J. Trump wrote
+            what would soon be regarded as the best-crafted piece of American
+            political rhetoric since at least the Gettysburg address. Can you
+            tell President Trump's quotes apart from quotes from the other
+            profoundly important pillar of American literature, George Lucas's
+            <i>Star Wars</i> prequels?
+        </p>
+        <button id="startButton" onclick="startGame()">Get Started</button>
+    </div>
+
+    <div id="game-container">
+        <div id="result">
+            <div id="quoteNumber"></div>
+            <div id="score"></div>
+        </div>
+        <h3 id="quote"></h3>
+        <div id="button-container">
+            <button class="guessButton" id="guessTrump" onclick="guessTrump()">
+                Trump
+            </button>
+            <button
+                class="guessButton"
+                id="guessPrequel"
+                onclick="guessPrequel()"
+            >
+                Prequel
+            </button>
+        </div>
+    </div>
+</body>
