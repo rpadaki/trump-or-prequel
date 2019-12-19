@@ -12,8 +12,12 @@
             return a;
         }
         async function makeAPI() {
-            var t = fetch("trump.txt").then(r => r.text().split("\n"));
-            var p = fetch("prequel.txt").then(r => r.text().split("\n"));
+            var t_p = fetch("trump.txt").then(r => r.text());
+            var p_p = fetch("prequel.txt").then(r => r.text());
+            var t_r = await t_p;
+            var p_r = await p_p;
+            var t = t_r.split("\n");
+            var p = t_p.split("\n");
             shuffle(p);
             shuffle(t);
             var lists = [t, p];
