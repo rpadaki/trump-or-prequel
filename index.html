@@ -11,29 +11,9 @@
             }
             return a;
         }
-        function makeAPI() {
-            var t = [
-                "It is a terrible thing you are doing, but you will have to live with it, not I!",
-                "You do know know, nor do you care, the great damage and hurt you have inflicted upon wonderful and loving members of my family.",
-                "You are the ones bringing pain and suffering to our Republic for your own selfish personal, political, and partisan gain.",
-                "You showed no remorse, no capacity for self-reflection.",
-                "You view democracy as your enemy!",
-                "You said it was very divisive — it certainly is, even far more than you ever thought possible — and it will only get worse!",
-                "This is nothing more than an illegal, partisan attempted coup.",
-                "No intelligent person believes what you are saying."
-            ];
-            var p = [
-                "We live in a real world, come back to it.",
-                "What if the democracy we thought we were serving no longer exists?",
-                "So this is how liberty dies...",
-                "This party's over.",
-                "If you're not with me, then you're my enemy.",
-                "You must realize, you are doomed!",
-                "So, this is how liberty dies.",
-                "Have you no sense at all?",
-                "I will sign no treaty, senator.",
-                "I was not elected to watch my people suffer and die!"
-            ];
+        async function makeAPI() {
+            var t = fetch("trump.txt").then(r => r.text().split("\n"));
+            var p = fetch("prequel.txt").then(r => r.text().split("\n"));
             shuffle(p);
             shuffle(t);
             var lists = [t, p];
@@ -78,7 +58,7 @@
                 checkAnswer: checkAnswer
             };
         }
-        var { getPosition, getNext, checkAnswer } = makeAPI();
+        var api_promise = makeAPI();
 
         function setQuoteNumber(a, b) {
             document.getElementById("quoteNumber").innerText =
@@ -135,7 +115,13 @@
             setupNext();
         }
 
-        function startGame() {
+        var getPosition, getNext, checkAnswer;
+
+        async function startGame() {
+            var api = await api_promise;
+            getPosition = api.getPosition;
+            getNext = api.getNext;
+            checkAnswer = api.checkAnswer;
             document.getElementById("start-container").style.display = "none";
             document.getElementById("game-container").style.display = "block";
             setupNext();
