@@ -74,6 +74,41 @@
                 a + "/" + b + " correct";
         }
 
+        function getScore() {
+            var scoreString = document
+                .getElementById("score")
+                .innerText.split(" ")[0];
+            var fracString = scoreString.split["/"];
+            var frac = parseFloat(fracString[0]) / parseFloat(fracString[1]);
+            return frac;
+        }
+
+        function resultQuote(score) {
+            if (score == 0) {
+                return "were you trying to fail?";
+            }
+            if (score <= 0.2) {
+                return "sad!";
+            }
+            if (score <= 0.5) {
+                return "reality is often disappointing.";
+            }
+            if (score <= 0.7) {
+                return "probably a harvard b-...";
+            }
+            if (score <= 0.85) {
+                return "you either know the president well or the prequels well, and i don't know which is worse...";
+            }
+            if (score <= 0.93) {
+                return "probably an mit c-...";
+            }
+            if (score < 1) {
+                return "just grab [victory] by the [knowledge]!";
+            } else {
+                return "very special!";
+            }
+        }
+
         function setupNext() {
             var quote = getNext();
             var position = getPosition();
@@ -85,7 +120,7 @@
                 document.getElementById("result").style.display = "none";
                 var score = document.getElementById("score").innerText;
                 document.getElementById("quote").innerText =
-                    score + "\n\nvery special!";
+                    score + "\n\n" + resultQuote(getScore());
             } else if (quote == -1) {
                 // error
             } else {
