@@ -139,11 +139,10 @@
                     "rgb(245, 142, 138)";
             }
             document.getElementById("button-container").style.display = "none";
-            await setTimeout(() => {
-                document.getElementById("quote").style.backgroundColor = "";
-                document.getElementById("button-container").style.display =
-                    "flex";
-            }, 1000);
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            document.getElementById("quote").style.backgroundColor = "";
+            document.getElementById("button-container").style.display = "flex";
         }
 
         async function guessTrump() {
