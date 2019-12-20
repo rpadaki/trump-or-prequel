@@ -129,27 +129,33 @@
             }
         }
 
-        function updateResult(result) {
+        async function updateResult(result) {
             setScore(result[1], result[2]);
             if (result[0]) {
-                document.getElementById("result").style.backgroundColor =
+                document.getElementById("quote").style.backgroundColor =
                     "rgb(142, 236, 147)";
             } else {
-                document.getElementById("result").style.backgroundColor =
+                document.getElementById("quote").style.backgroundColor =
                     "rgb(245, 142, 138)";
             }
+            document.getElementById("button-container").style.display = "none";
+            await setTimeout(() => {
+                document.getElementById("quote").style.backgroundColor = "";
+                document.getElementById("button-container").style.display =
+                    "flex";
+            }, 100);
         }
 
-        function guessTrump() {
+        async function guessTrump() {
             var result = checkAnswer(0);
-            updateResult(result);
+            await updateResult(result);
 
             setupNext();
         }
 
-        function guessPrequel() {
+        async function guessPrequel() {
             var result = checkAnswer(1);
-            updateResult(result);
+            await updateResult(result);
 
             setupNext();
         }
