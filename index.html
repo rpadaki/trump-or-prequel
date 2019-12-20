@@ -169,9 +169,7 @@
 
         async function guessPrequel() {
             var result = checkAnswer(1);
-            await updateResult(result);
-
-            setupNext();
+            await updateResult(result).then(() => setupNext());
         }
 
         var getPosition, getNext, checkAnswer;
