@@ -135,7 +135,8 @@
                 document.getElementById("result").style.display = "none";
                 var score = document.getElementById("score").innerText;
                 document.getElementById("quote").innerText =
-                    score + "\n\n" + resultQuote(getScore());
+                    score + "\n\n" + resultQuote(getScore()) + "\n\nshare with your 'friends' at "
+                document.getElementById("quote").innerHTML += "<a href='https://tinyurl.com/trump-prequel'>https://tinyurl.com/trump-prequel</a>";
             } else if (quote == -1) {
                 // error
             } else {
