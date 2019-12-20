@@ -66,7 +66,7 @@
             var correct = 0;
 
             function checkAnswer(i) {
-                if (i == order[o_counter] && o_counter < order.length - 1) {
+                if (i == order[o_counter] && o_counter < order.length) {
                     ++correct;
                 }
                 return [i == order[o_counter], correct, o_counter + 1];
@@ -169,7 +169,9 @@
 
         async function guessPrequel() {
             var result = checkAnswer(1);
-            await updateResult(result).then(() => setupNext());
+            await updateResult(result);
+
+            setupNext();
         }
 
         var getPosition, getNext, checkAnswer;
